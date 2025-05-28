@@ -85,7 +85,12 @@ We will first clean out dataset and add additional columns which would make it e
 
 ### Univariate Analysis
 
-Another Test
+<iframe
+  src="assets/distribution-of-prop-protein.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ---
 
