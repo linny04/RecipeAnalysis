@@ -1,1 +1,113 @@
-# RecipeAnalysis
+# Investigation on the Relationship Between Amount of Protein and Time to make Recipes
+
+by Matthew Lin
+
+---
+
+## Introduction
+
+A lot of people look online for new recipe to make everyday and want to find healthy meals that provide them with the right nutrition. While there are many of us who love consuming tasty food, many also find that it is important to consume the right foods that are tailored to their diets. Protein is important for muscle gains and also retention of muscle mass in the body. Knowing that it is hard to find the balance in everyday life for finding a good time to cook or not having enough time in general, we wonder **if recipes that take longer to prepare and make are less dense in nutrients, specifically protein.** We will analuze two datasets that consists of recipe and ratings from [food.com](https://www.food.com/).
+
+Our `recipe` dataset contains 83782 rows with 12 columns:
+
+| Column             | Description                                                                                                                                                                                       |
+| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `'name'`           | Recipe name                                                                                                                                                                                       |
+| `'id'`             | Recipe ID                                                                                                                                                                                         |
+| `'minutes'`        | Minutes to prepare recipe                                                                                                                                                                         |
+| `'contributor_id'` | User ID who submitted this recipe                                                                                                                                                                 |
+| `'submitted'`      | Date recipe was submitted                                                                                                                                                                         |
+| `'tags'`           | Food.com tags for recipe                                                                                                                                                                          |
+| `'nutrition'`      | Nutrition information in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV stands for “percentage of daily value” |
+| `'n_steps'`        | Number of steps in recipe                                                                                                                                                                         |
+| `'steps'`          | Text for recipe steps, in order                                                                                                                                                                   |
+| `'description'`    | User-provided description                                                                                                                                                                         |
+| `'ingredients'`    | Text for recipe ingredients                                                                                                                                                                       |
+| `'n_ingredients'`  | Number of ingredients in recipe                                                                                                                                                                   |
+
+Our `interactions` dataset includes 731927 rows and 5 columns:
+
+| Column        | Description         |
+| :------------ | :------------------ |
+| `'user_id'`   | User ID             |
+| `'recipe_id'` | Recipe ID           |
+| `'date'`      | Date of interaction |
+| `'rating'`    | Rating given        |
+| `'review'`    | Review text         |
+
+---
+
+## Cleaning and EDA
+
+We will first clean out dataset and add additional columns which would make it easier to perform our analysis.
+
+1. First we will left merge the recipes and interactions datasets on id and recipe_id. This will give us a complete dataset with the ratings and review information in the same dataset as the recipe information.
+
+2. Next we will fill all the ratings of 0 with np.nan. This is because the rating on [food.com](https://www.food.com/) using a scale from 1-5, meaning the lowest rating possible is 1 and the highest rating possible is 5. Ratings that are 0 are invalid therefore we will replace values of 0 with np.nan.
+
+3. Next, we will add a column `average_rating` which is the average rating per recipe. We will create this column to find the average rating of each recipe since different users will have different ratings for each recipe.
+
+4. Because we are analyzing the amount of protein in each recipe, we will create a new column called `protein` which extracts the daily PDV of protein in each recipe. Knowing that the nutrtion information in the `nutrtion` column is in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)], we can extract the protein PDV from this. We will also create another column using the same procedure called `calories`. After creating both of these new columns, we will convert these string objects to float values.
+
+5. Next we will add a new column called `prop_protein' which is the proportion of protein of the total calories in the recipe. To calculate this, we will use the values in our `protein` column and divide to by 100 to get it in decimal form and then multiply it by 51 because 51 grams of protein is the 100% daily value (PDV). To convert this value into the number of calories from protein, we will multiply it by 4 since there are 4 calories in 1 gram of protein. After that, we will divide this number by the total amount of calories in the recipe to get the proportion of protein of the total calories.
+
+6. We will create a new column called `time_cat` which categorizes the recipes based on the amount of minutes it takes to make it. We will categorize it into two groups: Easy-Medium and Long where the Easy-Medium is defined as recipes that take 60 minutes or less to make and Long recipes are recipes that take over 60 minutes.
+
+
+**Final Dataset**
+
+|  Column        | Description |
+|:---------------|:---------|
+| `'name'`           | object   |
+| `'id'`             | int64    |
+| `'minutes'`        | int64    |
+| `'contributor_id'` | int64    |
+| `'submitted'`      | object   |
+| `'tags'`           | object   |
+| `'nutrition'`      | object   |
+| `'n_steps'`        | int64    |
+| `'steps'`          | object   |
+| `'description'`    | object   |
+| `'ingredients'`    | object   |
+| `'n_ingredients'`  | int64    |
+| `'user_id'`        | float64  |
+| `'recipe_id'`      | float64  |
+| `'date'`           | object   |
+| `'rating'`         | float64  |
+| `'review'`         | object   |
+| `'avg_rating'`     | float64  |
+| `'protein'`        | float64  |
+| `'calories'`       | float64  |
+| `'prop_protein'`   | float64  |
+| `'time_cat'`       | category |
+
+
+
+### Univariate Analysis
+
+Test
+
+---
+
+## Assessment of Missingness
+
+Here's what a Markdown table looks like. Note that the code for this table was generated _automatically_ from a DataFrame, using
+
+```py
+print(counts[['Quarter', 'Count']].head().to_markdown(index=False))
+```
+
+| Quarter     |   Count |
+|:------------|--------:|
+| Fall 2020   |       3 |
+| Winter 2021 |       2 |
+| Spring 2021 |       6 |
+| Summer 2021 |       4 |
+| Fall 2021   |      55 |
+
+---
+
+## Hypothesis Testing
+
+
+---
