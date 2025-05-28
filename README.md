@@ -140,19 +140,63 @@ I then plotted the data on a line graph and the results that I found were intere
 
 ## Assessment of Missingness
 
-Here's what a Markdown table looks like. Note that the code for this table was generated _automatically_ from a DataFrame, using
+### NMAR Analysis
 
-```py
-print(counts[['Quarter', 'Count']].head().to_markdown(index=False))
-```
+There are a lot of missing values in the `description` column and I believe that this column is NMAR because if there are users who are less experienced and maybe posted an unfinished recipe, their post could be missing some information which could include the description. First time users of the website could be inexperienced to using the website and might forget to add a description or feel like thier receipe is not good enough to add a description. Recipes who have a description usually are higher quality recipes that most people might find confusing just by reading the title or name of the recipe, requiring a description. For recipes that are more self explanatory and more simple like cookies or cupcakes, the creators of the recipe might not include a description as they might believe that there is no need for a description.
 
-| Quarter     |   Count |
-|:------------|--------:|
-| Fall 2020   |       3 |
-| Winter 2021 |       2 |
-| Spring 2021 |       6 |
-| Summer 2021 |       4 |
-| Fall 2021   |      55 |
+
+### Missingness Dependency
+
+There were a lot of missing values in our `ratings` column and we wanted to test out to see if the missingness depended on two other columns: `n_steps` which is the number of steps in the recipe and `minutes` which is the amount of time it takes to make the recipes in minutes. 
+
+#### `n_steps` and `rating`
+
+**Null Hypothesis:** The missingness of ratings does not depend on the number of steps in the recipe.
+
+**Alternate Hypothesis:** The missingness of ratings does depend on the number of steps in the recipe.
+
+**Test Statistic:** The absolute difference of mean in the number of steps of the distribution of the group without missing ratings and the distribution of the group with missing ratings.
+
+**Signficance level (alpha):** 0.05
+
+<iframe
+  src="assets/distribution-nsteps.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/emp-distribution-nsteps.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+#### `minutes` and `rating`
+
+**Null Hypothesis:** The missingness of ratings does not depend on the time it takes to make the recipe.
+
+**Alternate Hypothesis:** The missingness of ratings does depend on the time it takes to make the recipe.
+
+**Test Statistic:** The absolute difference of mean in minutes of the distribution of the group without missing ratings and the distribution of the group with missing ratings.
+
+**Signficance level (alpha):** 0.05
+
+<iframe
+  src="assets/distribution-minutes.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/emp-distribution-minutes.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ---
 
