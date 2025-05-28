@@ -85,8 +85,23 @@ We will first clean out dataset and add additional columns which would make it e
 
 ### Univariate Analysis
 
+For the univariate analysis, I examined the distribution of the proportion of protein in each recipe. We can see that the distribution is right skewed telling us that most of the recipes have a lower proportion of protein. As the proportion of protein in a recipe increases, there are less of these recipes.
+
+
 <iframe
   src="assets/distribution-of-prop-protein.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+### Bivariate Analysis
+
+For the bivariate analysis, I examined the distrbution of the proportion or protein in each recipe categorized into two categories, Easy-Medium and Long recipes. We can see that the distribution for both categories are still right skewed but that there are a significantly more amount of Easy-Medium recipes. 
+
+<iframe
+  src="assets/distribution-of-prop-protein-time-cat.html"
   width="800"
   height="600"
   frameborder="0"
