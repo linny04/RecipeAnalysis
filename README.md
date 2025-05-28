@@ -83,6 +83,7 @@ We will first clean out dataset and add additional columns which would make it e
 
 
 
+
 ### Univariate Analysis
 
 For the univariate analysis, I examined the distribution of the proportion of protein in each recipe. We can see that the distribution is right skewed telling us that most of the recipes have a lower proportion of protein. As the proportion of protein in a recipe increases, there are less of these recipes.
@@ -95,7 +96,6 @@ For the univariate analysis, I examined the distribution of the proportion of pr
   frameborder="0"
 ></iframe>
 
-
 ### Bivariate Analysis
 
 For the bivariate analysis, I examined the distrbution of the proportion or protein in each recipe categorized into two categories, Easy-Medium and Long recipes. We can see that the distribution for both categories are still right skewed but that there are a significantly more amount of Easy-Medium recipes. 
@@ -106,6 +106,35 @@ For the bivariate analysis, I examined the distrbution of the proportion or prot
   height="600"
   frameborder="0"
 ></iframe>
+
+### Interesting Aggregates
+
+For this section, I wanted to investigate the relationship between the number of steps and the proportion of protein in a recipe. I filtered first grouped the data into the number of steps that each recipe had and then calculated five different statistics: mean, median, minimum, maximum and the standard deviation. The pivot table that I created is shown below:
+
+|   n_steps |   mean_prop |   median_prop |   min_prop |   max_prop |        std |
+|----------:|------------:|--------------:|-----------:|-----------:|-----------:|
+|         1 |   0.0919193 |     0.0560902 | 0          |  0.775297  | 0.118624   |
+|         2 |   0.0973729 |     0.068533  | 0          |  0.765     | 0.107448   |
+|         3 |   0.114684  |     0.0827586 | 0          |  0.764373  | 0.11726    |
+|         4 |   0.138832  |     0.105209  | 0          |  0.848527  | 0.13137    |
+|         5 |   0.157365  |     0.11564   | 0          |  0.885079  | 0.141856   |
+|       ... |       ...   |     ...       | ...        |    ...     |    ...     |
+|        87 |   0.131119  |     0.131119  | 0.131119   |  0.131119  | 0          |
+|        88 |   0.30579   |     0.334949  | 0.0433581  |  0.334949  | 0.0922092  |
+|        93 |   0.158303  |     0.158303  | 0.158303   |  0.158303  | 0          |
+|        98 |   0.0200787 |     0.0200787 | 0.0200787  |  0.0200787 | 0          |
+|       100 |   0.0698248 |     0.0698248 | 0.0698248  |  0.0698248 | 0          |
+
+I then plotted the data on a line graph and the results that I found were interesting. There is a small trend that as the number of steps increase the maximum proportion of protein in a recipe starts to decrease slowly with fluctuating trend lines. The lines for the mean and median follow similar trends, spiking at the recipes that have the same number of steps. However, there is no clear trend suggesting that there might not be a linear relationship between the number of steps for a recipe and the proportion of protein.
+
+<iframe
+  src="assets/aggregate-plot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
 
 ---
 
