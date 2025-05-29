@@ -210,7 +210,29 @@ Before running the permutation test, we found the **observed statistic**, the ab
 
 ## Hypothesis Testing
 
-We want to investage the relationship between the amount of protein `prop_protein` in a recipe and the time it takes to make the recipe. We decided to categorize recipes using the minutes it takes to make it, where recipes that take 60 minutes or less are categorized as 'Easy-Medium' and recipes that take 60 minutes or more are 'Long'. Using these two definitions, we decided to run a permutation test to see if the proportion of protein are the same between the two distributions, 'Easy-Medium' and 'Long'.
+We want to investage the relationship between the amount of protein `prop_protein` in a recipe and the time it takes to make the recipe. We decided to categorize recipes using the minutes it takes to make it, where recipes that take 60 minutes or less are categorized as 'Easy-Medium' and recipes that take 60 minutes or more are 'Long'. Using these two definitions, we decided to run a permutation test to see if the proportion of protein are the same between the two distributions, 'Easy-Medium' and 'Long'. 
+
+**Null Hypothesis:** The proportion of protein in recipes is the same in 'Easy-Medium' and 'Long' recipes.
+
+**Alternate Hypothesis:** The proportion of protein in recipes is lower in 'Easy-Medium' recipes than in 'Long' recipes. 
+
+**Test Statistic:** The difference in mean between proportion of protein of 'Easy-Medium' and 'Long' recipes.
+
+**Signficance level (alpha):** 0.05
+
+We are using a permutation test because we want to compare the two samples, 'Easy-Medium' and 'Long' recipes. Because we do not have any prior information about the population of both samples, we can use a permutation test to check and see if the two distributions come from the same population or is one higher than the other. By using a permutation test, we can test to see if recipes that take less time to make have a lower proportion of protein in the recipe. We hypothesize this because easier and less time consuming recipes might use ingredients that don't require as much cooking or require dealing with raw meat, which would be the main source of protein.Fast-cook recipes often center on produce, grains, or convenience items (pre-cooked items) that are relatively low in protein per calorie whereas high‐protein proteins (steak, chicken, pork) usually need higher, longer heat (roasting, braising) to become palatable, so they appear more in 'Long' recipes.
+
+For the test statistic, we decided to use the difference in mean between proportion of protein of 'Easy-Medium' and 'Long' recipes because we wanted to see if 'Easy-Medium' recipes had a lower proportion of protein making it a directional hypothesis. We are not just looking to see if the two populations are different, but we want to test to see if one is lower than the other. To run the test, we first split our dataset into 'Easy-Medium' and 'Long' and found that the **observed statistic** to be **-0.0266**. Then we ran our permutation test, shuffling the `time_cat` column 1000 times to collect 1000 simulation mean differences between the two categories. 
+
+<iframe
+  src="assets/emp-distribution-hypothesis-test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+#### Conclusion
+The **p-value** that we found was **0.0000** which is significantly less than our significance level of 0.05 (0.0000 < 0.05) so we **reject our null hypothesis** that the proportion of protein in recipes is the same in 'Easy-Medium' and 'Long' recipes. The proportion of protein is not the same in all recipes and recipes that take less time to make tend to have a lower protein-calories ratio. 
 
 
 ---
