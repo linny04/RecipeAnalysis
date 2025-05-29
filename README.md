@@ -173,6 +173,10 @@ There were a lot of missing values in our `ratings` column and we wanted to test
   frameborder="0"
 ></iframe>
 
+To test to see if the missingness of ratings depends on the number of steps in the recipe, we ran a permutation test where we shuffled the missingness of rating 1000 times. By doing this, we create 1000 diffrent simulations and we collected 1000 absolute difference of means in the two distributions. 
+
+Before running the permutation test, we found the **observed statistic**, the absolute difference of mean between the two distributions, to be **1.3386**. Using the observed test statistic we found, we found our **p-value** to be **0.0000** and at the 0.05 significance level, we **reject the null hypothesis** since 0.0000 < 0.05. The missingness of ratings does depend on the number of steps in each recipe. 
+
 
 #### `minutes` and `rating`
 
@@ -197,6 +201,10 @@ There were a lot of missing values in our `ratings` column and we wanted to test
   height="600"
   frameborder="0"
 ></iframe>
+
+To test to see if the missingness of ratings depends on the times it takes to make the recipe, we ran a permutation test where we shuffled the missingness of rating 1000 times. By doing this, we create 1000 diffrent simulations and we collected 1000 absolute difference of means in the two distributions. 
+
+Before running the permutation test, we found the **observed statistic**, the absolute difference of mean between the two distributions, to be **51.4524**. Using the observed test statistic we found, we found our **p-value** to be **0.1340** and at the 0.05 significance level, we **fail to reject the null hypothesis** since 0.1340 > 0.05. The missingness of ratings does not depend on the cooking time of each recipe. 
 
 ---
 
