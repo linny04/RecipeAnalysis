@@ -210,5 +210,7 @@ Before running the permutation test, we found the **observed statistic**, the ab
 
 ## Hypothesis Testing
 
+We want to investage the relationship between the amount of protein `prop_protein` in a recipe and the time it takes to make the recipe. We decided to categorize recipes using the minutes it takes to make it, where recipes that take 60 minutes or less are categorized as 'Easy-Medium' and recipes that take 60 minutes or more are 'Long'. Using these two definitions, we decided to run a permutation test to see if the proportion of protein are the same between the two distributions, 'Easy-Medium' and 'Long'.
+
 
 ---
