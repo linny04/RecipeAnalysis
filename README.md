@@ -149,7 +149,7 @@ There are a lot of missing values in the `description` column and I believe that
 
 There were a lot of missing values in our `ratings` column and we wanted to test out to see if the missingness depended on two other columns: `n_steps` which is the number of steps in the recipe and `minutes` which is the amount of time it takes to make the recipes in minutes. 
 
-#### `n_steps` and `rating`
+### `n_steps` and `rating`
 
 **Null Hypothesis:** The missingness of ratings does not depend on the number of steps in the recipe.
 
@@ -178,7 +178,7 @@ To test to see if the missingness of ratings depends on the number of steps in t
 Before running the permutation test, we found the **observed statistic**, the absolute difference of mean between the two distributions, to be **1.3386**. Using the observed test statistic we found, we found our **p-value** to be **0.0000** and at the 0.05 significance level, we **reject the null hypothesis** since 0.0000 < 0.05. The missingness of ratings does depend on the number of steps in each recipe. 
 
 
-#### `minutes` and `rating`
+### `minutes` and `rating`
 
 **Null Hypothesis:** The missingness of ratings does not depend on the time it takes to make the recipe.
 
