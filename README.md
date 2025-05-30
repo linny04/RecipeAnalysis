@@ -234,5 +234,23 @@ For the test statistic, we decided to use the difference in mean between proport
 #### Conclusion
 The **p-value** that we found was **0.0000** which is significantly less than our significance level of 0.05 (0.0000 < 0.05) so we **reject our null hypothesis** that the proportion of protein in recipes is the same in 'Easy-Medium' and 'Long' recipes. The proportion of protein is not the same in all recipes and recipes that take less time to make tend to have a lower protein-calories ratio. 
 
+---
+
+## Framing a Prediction Model
+We plan to predict the time category of a recipe: 'Easy-Medium' or 'Long' whihc would be a classification problem because we are using our `time_cat` variable which is a categorical variable. We will predict whether the recipe is a 'Easy-Medium' recipe (60 minutes or less) or a 'Long' recipe (more than 60 minutes). 
+
+We chose to predict the `time_cat` because prep time is one of the first things a home cook checks, and being able to anticipate whether a recipe will be a moderate-effort (“Easy-Medium”) dish versus a longer-cook one can drive meal planning.
+
+To evalute our model, we will use the f1 score because our two classes could be unevenly distributed and may be unbalanced. We would want to ensures we penalize both false positives and false negatives because the accuracy of our model can be misleading if one of the classes dominates the other. At the time of the prediction, we will only know the columns in the rating dataset and all predictors are things you'd see on the recipe page before you ever start cooking. 
 
 ---
+
+## Baseline Model
+
+---
+
+## Final Model
+
+---
+
+## Fairness Analysis
