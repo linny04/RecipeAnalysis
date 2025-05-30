@@ -53,6 +53,8 @@ We will first clean out dataset and add additional columns which would make it e
 
 6. We will create a new column called `time_cat` which categorizes the recipes based on the amount of minutes it takes to make it. We will categorize it into two groups: Easy-Medium and Long where the Easy-Medium is defined as recipes that take 60 minutes or less to make and Long recipes are recipes that take over 60 minutes.
 
+7. We will create a new column called `'cal_cat'` which categorizes the recipes based on the amount of calories are in each recipe. We will categorize it into four groups: Low, Medium, High, and Very High where Low is defined as recipes with 300 calories or less, Medium is defined as recipes with more than 300 calories and 500 calories or less, High is defined as recipes with more than 500 calories and 700 calories or less, and Very High is defined as recipes with more than 700 calories.
+
 
 **Final Dataset**
 
@@ -80,6 +82,7 @@ We will first clean out dataset and add additional columns which would make it e
 | `'calories'`       | float64  |
 | `'prop_protein'`   | float64  |
 | `'time_cat'`       | category |
+| `'cal_cat'`        | category |
 
 
 
@@ -237,15 +240,24 @@ The **p-value** that we found was **0.0000** which is significantly less than ou
 ---
 
 ## Framing a Prediction Model
-We plan to predict the time category of a recipe: 'Easy-Medium' or 'Long' whihc would be a classification problem because we are using our `time_cat` variable which is a categorical variable. We will predict whether the recipe is a 'Easy-Medium' recipe (60 minutes or less) or a 'Long' recipe (more than 60 minutes). 
+We plan to predict the time category of a recipe: 'Easy-Medium' or 'Long' which would be a classification problem because we are using our `time_cat` variable which is a categorical variable. We will predict whether the recipe is a 'Easy-Medium' recipe (60 minutes or less) or a 'Long' recipe (more than 60 minutes). 
 
-We chose to predict the `time_cat` because prep time is one of the first things a home cook checks, and being able to anticipate whether a recipe will be a moderate-effort (“Easy-Medium”) dish versus a longer-cook one can drive meal planning.
+We chose to predict the `time_cat` because prep time is one of the first things a home cook checks, and being able to anticipate whether a recipe will be a moderate-effort ('Easy-Medium') dish versus a longer-cook one can drive meal planning.
 
 To evalute our model, we will use the f1 score because our two classes could be unevenly distributed and may be unbalanced. We would want to ensures we penalize both false positives and false negatives because the accuracy of our model can be misleading if one of the classes dominates the other. At the time of the prediction, we will only know the columns in the rating dataset and all predictors are things you'd see on the recipe page before you ever start cooking. 
 
 ---
 
 ## Baseline Model
+For our baseline model, we will use a random forest classifier and split the data points into training and test sets. This is because we want to train our model using data that we already known and have seen and the test the data on unseen data to see the accuracy of our model. 
+
+We will use two features for our baseline model, `prop_protein`, a column containing quantitative numerical values and `cal_cat`, a column containing cateogrical values.
+
+We will one hot encode our `cal_cat` column and drop one of the encoded columns. For our `prop_protein` column, we will apply a `RobustScaler` transformation because it centers and scales your data using robust statistics.
+
+We found that our F1 score for this model was ...
+
+
 
 ---
 
