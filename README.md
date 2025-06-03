@@ -255,13 +255,33 @@ We will use two features for our baseline model, `prop_protein`, a column contai
 
 We will one hot encode our `cal_cat` column and drop one of the encoded columns. For our `prop_protein` column, we will apply a `RobustScaler` transformation because it centers and scales your data using robust statistics.
 
-We found that our **F1 score** for this model was **0.89** and the F1 score for 'Easy-Medium' was 0.93 and 'Long' was 0.76. Our model predicts better for 'Easy-Medium' recipes and was not as accurate when predicting recipes that were 'Long'. This could be because that there were more recipes that were considered 'Easy-Medium' than 'Long' recipes so our model was able to better predict the 'Easy-Medium' recipes with more data points.
-
-
+We found that our **F1 score** for this model was **0.89** and the F1 score for 'Easy-Medium' was **0.93** and 'Long' was **0.76**. Our model predicts better for 'Easy-Medium' recipes and was not as accurate when predicting recipes that were 'Long'. This could be because that there were more recipes that were considered 'Easy-Medium' than 'Long' recipes so our model was able to better predict the 'Easy-Medium' recipes with more data points.
 
 ---
 
 ## Final Model
+For our final model, we will again use a random forest classifier and split the data points into training and test sets. We will use `prop_protein`, `cal_cat`, `n_steps`, and `n_ingredients`.
+
+`prop_protein`
+
+This column contains the quantative numerical values that is the proportion of proteins in each recipe in relation to the number of calories. We decided to use a `RobustScaler` transformation for this column because it can sometimes have extreme outliers (e.g. an extreme protein‐dense recipe or one with zero calories leading to NaN). By using this transformation, we are centering the values by subtracting the median and then dividing it by the IQR. This helps improve our model because it can help prevent extremely large or small raw protein‐proportion values from altering other features during our calculations and reduce the bias. It also helps make our model more stable as the features' ranges become more comparable and not as wide across all our inputs. We are including this feature in our model because from our hypothesis test, we saw that recipes that were 'Easy-Medium' had a lower proportion of protein while 'Long' recipes had a higher proportion.
+
+`cal_cat`
+
+This column contains categorical values that categorizes the recipes based on the amount of calories are in each recipe. We categorized it into four groups: Low, Medium, High, and Very High where Low is defined as recipes with 300 calories or less, Medium is defined as recipes with more than 300 calories and 500 calories or less, High is defined as recipes with more than 500 calories and 700 calories or less, and Very High is defined as recipes with more than 700 calories. We decided to one hot encode this column and drop one of the encoded columns. We chose this feature becaused recipes that have higher calories will have require more steps and time to make because of the increase in ingredients. With more calories, we are including more 'ingredients' and are more likely to have more steps since it is a more complex recipe.
+
+`n_steps`
+
+We decided to include `n_steps` which is a numerical column that contains integer values of the number of steps for each recipe. We decided to include this feature in our model because recipes that take longer to make (minutes) usually have more steps. We decided to use a `Binarizer` transformation on this feature, using the median as the threshold. By using this transformation, it helps reduce the noise from minor differences in our data. It creates a more broad definition for the column and allows for a more clear breakpoint between the two groups 
+
+`n_ingredients`
+
+We decided to include `n_ingredients` which is a numerical column that contains integer values of the number of ingredients for each recipe. Similar to `n_steps`, we will include this feature in our model because recipes that take longer to make (minutes) usually include more ingredients. We decided to use a `Binarizer` transformation on this feature, using the median as the threshold. By using this transformation, it helps reduce the noise from minor differences in our data. It creates a more broad definition for the column and allows for a more clear breakpoint between the two groups.
+
+
+We used RandomForestClassifier as our modeling algorithm and conducted GridSearchCV to tune the hyperparameters of max_depth and n_estimators of the RandomForestClassifier. We decided to use RandomForestClassifier because it is more robust to outliers when compared to a linear model because splitting on thresholds makes them inherently robust when a few recipes have extreme values. Using GridSearchCV, we were able to extract the most predictive combination of models and have the highest accuracy. 
+
+The **F1 score** of our final model was **0.91**, which saw a 0.02 increase from our baseline model. The F1 score for both 'Easy-Medium' and 'Long' both increased to 0.94 and 0.81 respectively, with 'Long' increasing by 0.05. 
 
 ---
 
