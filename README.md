@@ -255,7 +255,7 @@ We will use two features for our baseline model, `prop_protein`, a column contai
 
 We will one hot encode our `cal_cat` column and drop one of the encoded columns. For our `prop_protein` column, we will apply a `RobustScaler` transformation because it centers and scales your data using robust statistics.
 
-We found that our F1 score for this model was ...
+We found that our **F1 score** for this model was **0.89** and the F1 score for 'Easy-Medium' was 0.93 and 'Long' was 0.76. Our model predicts better for 'Easy-Medium' recipes and was not as accurate when predicting recipes that were 'Long'. This could be because that there were more recipes that were considered 'Easy-Medium' than 'Long' recipes so our model was able to better predict the 'Easy-Medium' recipes with more data points.
 
 
 
