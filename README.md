@@ -251,7 +251,7 @@ To evalute our model, we will use the f1 score because our two classes could be 
 ## Baseline Model
 For our baseline model, we will use a random forest classifier and split the data points into training and test sets. This is because we want to train our model using data that we already known and have seen and the test the data on unseen data to see the accuracy of our model. 
 
-We will use two features for our baseline model, `prop_protein`, a column containing quantitative numerical values and `cal_cat`, a column containing cateogrical values.
+We will use two features for our baseline model, `prop_protein`, a column containing quantitative numerical values and `cal_cat`, a column containing ordinal values.
 
 We will one hot encode our `cal_cat` column and drop one of the encoded columns. For our `prop_protein` column, we will apply a `RobustScaler` transformation because it centers and scales your data using robust statistics.
 
