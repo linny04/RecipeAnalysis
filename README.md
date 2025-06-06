@@ -286,3 +286,14 @@ The **F1 score** of our final model was **0.91**, which saw a 0.02 increase from
 ---
 
 ## Fairness Analysis
+We decided to split the recipes into two groups by the number of ingredient in each recipe. We designed for our high ingredients group to be recipes with more than 9 ingredients and our low ingredients group to be recipes with 9 or less ingredients. We found that the median number of ingredients for our recipe dataset was 9 which is why we chose this as our threshold. We chose to use the median to binarize our dataset because of the robustness to outliers. If we used the mean, a few recipes with extremely large outliers could pull the mean upward which would cause our data to be skewed. The median will center our distribution and will create balanced group sizes. This way we will have exactly half or close to half of the recipes end up in "low" and half in "high". This helps us balance the model when fitting it onto our prediction model.
+
+**Null Hypothesis**: Our model is fair. Its precision for recipes with higher number of ingredients and lower number of ingredients are roughly the same.
+
+**Alternative Hypothesis**: Our model is unfair. Its precision for recipes with lower number of ingredients is lower than its precision for recipes with higher number of ingredients.
+
+**Test Statistic**: Difference in precision between recipes with higher number of ingredients and lower number of ingredients.
+
+**Signficance Level**: 0.05
+
+Before running the permutation test, we got an observed test statistic of **0.0137**. We then ran a permutation test and collecting all the sample test statistics. After running the permutation test, we found a p-value of **0.9740** and since the p-value is greater than our signifiance level of 0.05, we fail to reject the null hypothesis that our model is fair. The model's precision for recipes with less ingredients is the same as its precision for recipes with a higher number of ingredients.
